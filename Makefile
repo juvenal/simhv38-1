@@ -259,9 +259,9 @@ ALL = pdp1 pdp4 pdp7 pdp8 pdp9 pdp15 pdp11 pdp10 \
 	altair altairz80 gri i1620 i7094 ibm1130 id16 \
 	id32 sds lgp h316 
 
-all : ${ALL}
+all: ${ALL}
 
-clean :
+clean:
 ifeq ($(WIN32),)
 	${RM} ${BIN}*
 else
@@ -271,132 +271,132 @@ endif
 #
 # Individual builds
 #
-pdp1 : ${BIN}pdp1${EXE}
+pdp1: ${BIN}pdp1${EXE}
 
-${BIN}pdp1${EXE} : ${PDP1} ${SIM}
+${BIN}pdp1${EXE}: ${PDP1} ${SIM}
 	${CC} ${PDP1} ${SIM} ${PDP1_OPT} -o $@ ${LDFLAGS}
 
-pdp4 : ${BIN}pdp4${EXE}
+pdp4: ${BIN}pdp4${EXE}
 
-${BIN}pdp4${EXE} : ${PDP18B} ${SIM}
+${BIN}pdp4${EXE}: ${PDP18B} ${SIM}
 	${CC} ${PDP18B} ${SIM} ${PDP4_OPT} -o $@ ${LDFLAGS}
 
-pdp7 : ${BIN}pdp7${EXE}
+pdp7: ${BIN}pdp7${EXE}
 
-${BIN}pdp7${EXE} : ${PDP18B} ${SIM}
+${BIN}pdp7${EXE}: ${PDP18B} ${SIM}
 	${CC} ${PDP18B} ${SIM} ${PDP7_OPT} -o $@ ${LDFLAGS}
 
-pdp8 : ${BIN}pdp8${EXE}
+pdp8: ${BIN}pdp8${EXE}
 
-${BIN}pdp8${EXE} : ${PDP8} ${SIM}
+${BIN}pdp8${EXE}: ${PDP8} ${SIM}
 	${CC} ${PDP8} ${SIM} ${PDP8_OPT} -o $@ ${LDFLAGS}
 
-pdp9 : ${BIN}pdp9${EXE}
+pdp9: ${BIN}pdp9${EXE}
 
 ${BIN}pdp9${EXE} : ${PDP18B} ${SIM}
 	${CC} ${PDP18B} ${SIM} ${PDP9_OPT} -o $@ ${LDFLAGS}
 
-pdp15 : ${BIN}pdp15${EXE}
+pdp15: ${BIN}pdp15${EXE}
 
-${BIN}pdp15${EXE} : ${PDP18B} ${SIM}
+${BIN}pdp15${EXE}: ${PDP18B} ${SIM}
 	${CC} ${PDP18B} ${SIM} ${PDP15_OPT} -o $@ ${LDFLAGS}
 
-pdp10 : ${BIN}pdp10${EXE}
+pdp10: ${BIN}pdp10${EXE}
 
-${BIN}pdp10${EXE} : ${PDP10} ${SIM}
+${BIN}pdp10${EXE}: ${PDP10} ${SIM}
 	${CC} ${PDP10} ${SIM} ${PDP10_OPT} -o $@ ${LDFLAGS}
 
-pdp11 : ${BIN}pdp11${EXE}
+pdp11: ${BIN}pdp11${EXE}
 
-${BIN}pdp11${EXE} : ${PDP11} ${SIM}
+${BIN}pdp11${EXE}: ${PDP11} ${SIM}
 	${CC} ${PDP11} ${SIM} ${PDP11_OPT} -o $@ ${LDFLAGS}
 
-vax : ${BIN}vax${EXE}
+vax: ${BIN}vax${EXE}
 
-${BIN}vax${EXE} : ${VAX} ${SIM}
+${BIN}vax${EXE}: ${VAX} ${SIM}
 	${CC} ${VAX} ${SIM} ${VAX_OPT} -o $@ ${LDFLAGS}
 
-vax780 : ${BIN}vax780${EXE}
+vax780: ${BIN}vax780${EXE}
 
-${BIN}vax780${EXE} : ${VAX780} ${SIM}
+${BIN}vax780${EXE}: ${VAX780} ${SIM}
 	${CC} ${VAX780} ${SIM} ${VAX780_OPT} -o $@ ${LDFLAGS}
 
-nova : ${BIN}nova${EXE}
+nova: ${BIN}nova${EXE}
 
-${BIN}nova${EXE} : ${NOVA} ${SIM}
+${BIN}nova${EXE}: ${NOVA} ${SIM}
 	${CC} ${NOVA} ${SIM} ${NOVA_OPT} -o $@ ${LDFLAGS}
 
-eclipse : ${BIN}eclipse${EXE}
+eclipse: ${BIN}eclipse${EXE}
 
-${BIN}eclipse${EXE} : ${ECLIPSE} ${SIM}
+${BIN}eclipse${EXE}: ${ECLIPSE} ${SIM}
 	${CC} ${ECLIPSE} ${SIM} ${ECLIPSE_OPT} -o $@ ${LDFLAGS}
 
-h316 : ${BIN}h316${EXE}
+h316: ${BIN}h316${EXE}
 
-${BIN}h316${EXE} : ${H316} ${SIM}
+${BIN}h316${EXE}: ${H316} ${SIM}
 	${CC} ${H316} ${SIM} ${H316_OPT} -o $@ ${LDFLAGS}
 
-hp2100 : ${BIN}hp2100${EXE}
+hp2100: ${BIN}hp2100${EXE}
 
-${BIN}hp2100${EXE} : ${HP2100} ${SIM}
+${BIN}hp2100${EXE}: ${HP2100} ${SIM}
 	${CC} ${HP2100} ${SIM} ${HP2100_OPT} -o $@ ${LDFLAGS}
 
-i1401 : ${BIN}i1401${EXE}
+i1401: ${BIN}i1401${EXE}
 
-${BIN}i1401${EXE} : ${I1401} ${SIM}
+${BIN}i1401${EXE}: ${I1401} ${SIM}
 	${CC} ${I1401} ${SIM} ${I1401_OPT} -o $@ ${LDFLAGS}
 
-i1620 : ${BIN}i1620${EXE}
+i1620: ${BIN}i1620${EXE}
 
-${BIN}i1620${EXE} : ${I1620} ${SIM}
+${BIN}i1620${EXE}: ${I1620} ${SIM}
 	${CC} ${I1620} ${SIM} ${I1620_OPT} -o $@ ${LDFLAGS}
 
-i7094 : ${BIN}i7094${EXE}
+i7094: ${BIN}i7094${EXE}
 
-${BIN}i7094${EXE} : ${I7094} ${SIM}
+${BIN}i7094${EXE}: ${I7094} ${SIM}
 	${CC} ${I7094} ${SIM} ${I7094_OPT} -o $@ ${LDFLAGS}
 
-ibm1130 : ${BIN}ibm1130${EXE}
+ibm1130: ${BIN}ibm1130${EXE}
 
-${BIN}ibm1130${EXE} : ${IBM1130}
+${BIN}ibm1130${EXE}: ${IBM1130}
 	${CC} ${IBM1130} ${SIM} ${IBM1130_OPT} -o $@ ${LDFLAGS}
 
-s3 : ${BIN}s3${EXE}
+s3: ${BIN}s3${EXE}
 
-${BIN}s3${EXE} : ${S3} ${SIM}
+${BIN}s3${EXE}: ${S3} ${SIM}
 	${CC} ${S3} ${SIM} ${S3_OPT} -o $@ ${LDFLAGS}
 
-altair : ${BIN}altair${EXE}
+altair: ${BIN}altair${EXE}
 
-${BIN}altair${EXE} : ${ALTAIR} ${SIM}
+${BIN}altair${EXE}: ${ALTAIR} ${SIM}
 	${CC} ${ALTAIR} ${SIM} ${ALTAIR_OPT} -o $@ ${LDFLAGS}
 
-altairz80 : ${BIN}altairz80${EXE}
+altairz80: ${BIN}altairz80${EXE}
 
-${BIN}altairz80${EXE} : ${ALTAIRZ80} ${SIM} 
+${BIN}altairz80${EXE}: ${ALTAIRZ80} ${SIM} 
 	${CC} ${ALTAIRZ80} ${SIM} ${ALTAIRZ80_OPT} -o $@ ${LDFLAGS}
 
-gri : ${BIN}gri${EXE}
+gri: ${BIN}gri${EXE}
 
-${BIN}gri${EXE} : ${GRI} ${SIM}
+${BIN}gri${EXE}: ${GRI} ${SIM}
 	${CC} ${GRI} ${SIM} ${GRI_OPT} -o $@ ${LDFLAGS}
 
-lgp : ${BIN}lgp${EXE}
+lgp: ${BIN}lgp${EXE}
 
-${BIN}lgp${EXE} : ${LGP} ${SIM}
+${BIN}lgp${EXE}: ${LGP} ${SIM}
 	${CC} ${LGP} ${SIM} ${LGP_OPT} -o $@ ${LDFLAGS}
 
-id16 : ${BIN}id16${EXE}
+id16: ${BIN}id16${EXE}
 
-${BIN}id16${EXE} : ${ID16} ${SIM}
+${BIN}id16${EXE}: ${ID16} ${SIM}
 	${CC} ${ID16} ${SIM} ${ID16_OPT} -o $@ ${LDFLAGS}
 
-id32 : ${BIN}id32${EXE}
+id32: ${BIN}id32${EXE}
 
-${BIN}id32${EXE} : ${ID32} ${SIM}
+${BIN}id32${EXE}: ${ID32} ${SIM}
 	${CC} ${ID32} ${SIM} ${ID32_OPT} -o $@ ${LDFLAGS}
 
-sds : ${BIN}sds${EXE}
+sds: ${BIN}sds${EXE}
 
-${BIN}sds${EXE} : ${SDS} ${SIM}
+${BIN}sds${EXE}: ${SDS} ${SIM}
 	${CC} ${SDS} ${SIM} ${SDS_OPT} -o $@ ${LDFLAGS}
