@@ -1,37 +1,58 @@
 #
-# CC Command
+# Set compilation mode
+#
+ifneq ($(USE_DEBUG),)
+  DEBUG = -g
+else
+  DEBUG = -O2
+endif
+
+#
+# Prepare CC command based on environment
 #
 ifeq ($(WIN32),)
-  #Unix Environments
+  # Unix Environments
   ifneq (,$(findstring solaris,$(OSTYPE)))
+    # Solaris
     OS_CCDEFS = -lm -lsocket -lnsl -lrt -lpthread -D_GNU_SOURCE
+    ifneq ($(USE_NETWORK),)
+      NETWORK_OPT = -DUSE_NETWORK -isystem /usr/local/include /usr/local/lib/libpcap.a
+    endif
   else
     ifneq (,$(findstring darwin,$(OSTYPE)))
+      # Mac OS X
       OS_CCDEFS = -D_GNU_SOURCE
+      ifneq ($(USE_NETWORK),)
+        NETWORK_OPT = -DUSE_NETWORK -isystem /usr/include/pcap -lpcap
+      endif
     else
+      # Linux flavors
       OS_CCDEFS = -lrt -lm -D_GNU_SOURCE
+      ifneq ($(USE_NETWORK),)
+        NETWORK_OPT = -DUSE_NETWORK -isystem /usr/local/include /usr/local/lib/libpcap.a
+      endif
     endif
   endif
-  CC = gcc -std=c99 -U__STRICT_ANSI__ -g $(OS_CCDEFS) -I .
-  ifeq ($(USE_NETWORK),)
-  else
-    NETWORK_OPT = -DUSE_NETWORK -isystem /usr/local/include /usr/local/lib/libpcap.a
-  endif
 else
-  #Win32 Environments
-  LDFLAGS = -lm -lwsock32 -lwinmm
-  CC = gcc -std=c99 -U__STRICT_ANSI__ -O2 -I.
+  # Win32 Environments (Cygwin)
+  OS_CCDEFS = -lm -lwsock32 -lwinmm
   EXE = .exe
-  ifeq ($(USE_NETWORK),)
-  else
+  ifneq ($(USE_NETWORK),)
     NETWORK_OPT = -DUSE_NETWORK -lwpcap -lpacket
   endif
 endif
+# Complete CC command to use
+CC = gcc -std=c99 -U__STRICT_ANSI__ $(DEBUG) $(OS_CCDEFS) -I .
+
+#
+# Common commands
+#
+RM = rm -rf
 
 #
 # Common Libraries
 #
-BIN = BIN/
+BIN = bin/
 SIM = scp.c sim_console.c sim_fio.c sim_timer.c sim_sock.c \
 	sim_tmxr.c sim_ether.c sim_tape.c
 
