@@ -201,58 +201,69 @@ static const char r50_to_asc[] = " ABCDEFGHIJKLMNOPQRSTUVWXYZ$._0123456789";
         count   =       -number of extra words retired
 */
 
-int32 fprint_spec (FILE *of, t_addr addr, int32 spec, int32 nval)
-{
-int32 reg, mode;
-static const int32 rgwd[8] = { 0, 0, 0, 0, 0, 0, -1, -1 };
-static const int32 pcwd[8] = { 0, 0, -1, -1, 0, 0, -1, -1 };
+int32 fprint_spec (FILE *of, t_addr addr, int32 spec, int32 nval) {
+    int32 reg, mode;
+    static const int32 rgwd[8] = { 0, 0, 0, 0, 0, 0, -1, -1 };
+    static const int32 pcwd[8] = { 0, 0, -1, -1, 0, 0, -1, -1 };
 
-reg = spec & 07;
-mode = ((spec >> 3) & 07);
-switch (mode) {
+    reg = spec & 07;
+    mode = ((spec >> 3) & 07);
 
-    case 0:
-        fprintf (of, "%s", rname[reg]);
-        break;
+    switch (mode) {
+        case 0:
+            fprintf (of, "%s", rname[reg]);
+            break;
 
-    case 1:
-        fprintf (of, "(%s)", rname[reg]);
-        break;
+        case 1:
+            fprintf (of, "(%s)", rname[reg]);
+            break;
 
-    case 2:
-        if (reg != 7)
-            fprintf (of, "(%s)+", rname[reg]);
-        else fprintf (of, "#%-X", nval);
-        break;
+        case 2:
+            if (reg != 7) {
+                fprintf (of, "(%s)+", rname[reg]);
+            }
+            else {
+                fprintf (of, "#%-X", nval);
+            }
+            break;
 
-    case 3:
-        if (reg != 7)
-            fprintf (of, "@(%s)+", rname[reg]);
-        else fprintf (of, "@#%-X", nval);
-        break;
+        case 3:
+            if (reg != 7) {
+                fprintf (of, "@(%s)+", rname[reg]);
+            }
+            else {
+                fprintf (of, "@#%-X", nval);
+            }
+            break;
 
-    case 4:
-        fprintf (of, "-(%s)", rname[reg]);
-        break;
+        case 4:
+            fprintf (of, "-(%s)", rname[reg]);
+            break;
 
-    case 5:
-        fprintf (of, "@-(%s)", rname[reg]);
-        break;
+        case 5:
+            fprintf (of, "@-(%s)", rname[reg]);
+            break;
 
-    case 6:
-        if (reg != 7)
-            fprintf (of, "%-X(%s)", nval, rname[reg]);
-        else fprintf (of, "%-X", (nval + addr + 4) & 0177777);
-        break;
+        case 6:
+            if (reg != 7) {
+                fprintf (of, "%-X(%s)", nval, rname[reg]);
+            }
+            else {
+                fprintf (of, "%-X", (nval + addr + 4) & 0177777);
+            }
+            break;
 
-    case 7:
-        if (reg != 7)
-            fprintf (of, "@%-X(%s)", nval, rname[reg]);
-        else fprintf (of, "@%-X", (nval + addr + 4) & 0177777);
-        break;
-        }                                               /* end case */
+        case 7:
+            if (reg != 7) {
+                fprintf (of, "@%-X(%s)", nval, rname[reg]);
+            }
+            else {
+                fprintf (of, "@%-X", (nval + addr + 4) & 0177777);
+            }
+            break;
+    }   /* end case */
 
-return ((reg == 07)? pcwd[mode]: rgwd[mode]);
+    return ((reg == 07)? pcwd[mode]: rgwd[mode]);
 }
 
 /* Symbolic decode

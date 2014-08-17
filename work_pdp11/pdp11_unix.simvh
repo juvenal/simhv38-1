@@ -1,0 +1,7 @@
+set cpu u18
+set cpu idle
+set tto 7b
+set rl0 RL02
+attach rl0 unix_v7_rl.dsk
+boot rl0
+quit
